@@ -9,5 +9,6 @@ ReservasRouter.post('/reserva/getByDate', ReservaController.getByDate)
 ReservasRouter.post('/reserva/create', ReservaController.createReserva)
 ReservasRouter.delete('/reserva/delete', ReservaController.deleteReserva)
 ReservasRouter.post('/reserva/att', ReservaController.updateReserva)
+ReservasRouter.post('/reserva/deleteAll', ReservaController.deleteAll)
 
 export default ReservasRouter

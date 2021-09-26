@@ -3,7 +3,7 @@ import express, { Request, Response } from 'express'
 import cors from 'cors'
 import moongoose from 'mongoose'
 
-import ReservasRouter from 'src/routes/reservaRouter'
+import ReservasRouter from '../routes/reservaRouter'
 
 class App {
   public express: express.Application;
