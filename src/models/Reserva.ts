@@ -1,18 +1,15 @@
-import { uuid } from 'uuidv4'
+// eslint-disable-next-line no-unused-vars
+import { Document } from 'mongoose'
 
-export class Reserva {
-    public readonly id: string;
-    public nomeApartamento: string;
-    public dataCheckin: Date;
-    public dataCheckOut: Date;
-    public qtdHospedes: number;
-    public nomeHospedes: Array<string>;
-    public emailHospedes: Array<string>;
-
-    constructor (props: Omit<Reserva, 'id'>, id?: string) {
-      Object.assign(this, props)
-      if (!id) {
-        this.id = uuid()
-      }
-    }
+export default interface IReserva extends Document {
+  nomeApartamento: {
+    nomeApartamento: String
+  }
+  dataCheckin: Date
+  dataCheckOut: Date
+  qtdHospedes: number
+  dadosHospedes: {
+    nomesHospedes: [string],
+    emailHospedes: [string]
+  }
 }

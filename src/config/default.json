@@ -1,0 +1,7 @@
+{
+    "App":{
+        "database": {
+            "mongourl": "mongodb://localhost:27017/hotelaria"
+        }
+    }
+}
