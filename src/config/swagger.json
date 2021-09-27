@@ -1,0 +1,327 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de Malipulação de reservas",
+        "descriptsion": "Serviço rest responsavel por lidar com reservas de hotelaria",
+        "version":"1.0.0"
+    },
+    "paths":{
+        "/reserva/":{
+            "get":{
+                "summary": "listagem de reservas",
+                "description": "Rota de listagem de todas as reservas",
+                "tags": ["Reserva"],
+                "requestBody":{
+
+                },
+                "responses":{
+                    "200":{
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties":{
+                                        "reservas":{
+                                            "type":"array",
+                                            "items":{
+                                                "$ref":"#/components/schemas/Reserva"
+                                            }
+                                        },
+                                        "count":{
+                                            "type":"number"
+                                        }
+                                    }
+                                     
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reserva/byId":{
+            "post":{
+                "summary": "listagem de reserva por id",
+                "description": "para listar uma reserva especifica, passe o id da reserva",
+                "tags": ["Reserva"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "id":{
+                                        "type":"string"
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                     "$ref":"#/components/schemas/Reserva"
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reserva/create":{
+            "post":{
+                "summary": "criando uma reserva",
+                "description": "para criar uma reserva não é nescessario passar os ids, somente os dados no formato certo",
+                "tags": ["Reserva"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "Reserva":{
+                                        "type": "object",
+                                        "properties":{
+                                            "dadosApartamento":{
+                                                "type": "object",
+                                                "properties":{
+                                                    "nomeHotel":{
+                                                        "type": "string"    ,
+                                                        "require": "true"                        
+                                                    }
+                                                }
+                                                
+                                            },
+                                            "dataCheckin":{
+                                                "type":"Date",
+                                                "require": "true"
+                                            },
+                                            "dataCheckOut":{
+                                                "type":"Date",
+                                                "require": "true"
+                                            },
+                                            "qtdHospedes": { 
+                                                "type": "Number", 
+                                                "required": "true" 
+                                            },
+                                            "dadosHospedes":{
+                                                "type": "object",
+                                                "properties": {
+                                                    "nomeHospedes": {
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": ["String"],
+                                                            "required": "true" 
+                                                        }
+                                                    },
+                                                    "emailHospedes": {
+                                                        "type": "array",
+                                                        "items":{
+                                                            "type": ["String"],
+                                                            "required": "true" 
+                                                        }
+                                                    }
+                                                }
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                     "$ref":"#/components/schemas/Reserva"
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reserva/delete":{
+            "delete":{
+                "summary": "Deletar reserva",
+                "description": "Para deletar reserva basta somente mandar o id da reserva",
+                "tags": ["Reserva"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                  "id":{
+                                      "type":"string"
+                                  }
+                                            
+                                        
+                                    
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                     "properties":{
+                                         "message":{
+                                             "type":"resource deleted successfully"
+                                         }
+                                     }
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reserva/getByDate":{
+            "post":{
+                "summary": "filtragem por data",
+                "description": "para filtrar por data é nescessario passar o id do hotel do qual deseja buscar e o rande de datas no formato (YYYY-MM-DD)",
+                "tags": ["Reserva"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                  "idApartamento":{
+                                      "type":"string"
+                                  },
+                                  "startDate":{
+                                    "type":"date"
+                                },
+                                "endDate":{
+                                    "type":"date"
+                                }  
+                                    
+                                }
+                                
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                     "$ref":"#/components/schemas/Reserva"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/reserva/update":{
+            "post":{
+                "summary": "editando reserva",
+                "description": "para editar uma reserva é nescessario passar todas as suas infomações incluindo id do apartamento , id dos dados do usuario e id da propria reserva",
+                "tags": ["Reserva"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                 "$ref":"#/components/schemas/Reserva"
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                     "$ref":"#/components/schemas/Reserva"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components":{
+        "schemas": {
+            "Reserva":{
+                "type": "object",
+                "properties":{
+                    "dadosApartamento":{
+                        "type": "object",
+                        "properties":{
+                            "nomeHotel":{
+                                "type": "string"    ,
+                                "require": "true"                        
+                            },
+                            "_id":{
+                                "type":"string"
+                            }
+                        }
+                        
+                    },
+                    "dataCheckin":{
+                        "type":"Date",
+                        "require": "true"
+                    },
+                    "dataCheckOut":{
+                        "type":"Date",
+                        "require": "true"
+                    },
+                    "qtdHospedes": { 
+                        "type": "Number", 
+                        "required": "true" 
+                    },
+                    "dadosHospedes":{
+                        "type": "object",
+                        "properties": {
+                            "nomeHospedes": {
+                                "type": "array",
+                                "items":{
+                                    "type": ["String"],
+                                    "required": "true" 
+                                }
+                            },
+                            "emailHospedes": {
+                                "type": "array",
+                                "items":{
+                                    "type": ["String"],
+                                    "required": "true" 
+                                }
+                            },
+                            "_id": {
+                                "type":"string"
+                            }
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}

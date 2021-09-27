@@ -3,7 +3,7 @@ version: "3"
 services: 
   app:
     build: .
-    command: yarn start
+    command: sh -c "yarn build && yarn start"
     ports:
       - "8080:8080"
     volumes: 
@@ -14,8 +14,6 @@ services:
   mongoContainer:
     image: mongo
     ports:
-      - "6002:27017"
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: teste
+      - "27017:27017"
+
 

@@ -2,7 +2,8 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
 import moongoose from 'mongoose'
-
+import swaggerUi from 'swagger-ui-express'
+import swaggerDocs from '@config/swagger.json'
 import ReservasRouter from '../routes/reservaRouter'
 
 class App {
@@ -14,6 +15,7 @@ class App {
     this.middlewares()
     this.routes()
     this.database()
+    this.docs()
   }
 
   private middlewares (): void {
@@ -36,6 +38,11 @@ class App {
   private routes (): void {
     console.log('routes initialize')
     this.express.use(ReservasRouter)
+  }
+
+  private docs (): void {
+    console.log('swagger initalize')
+    this.express.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
   }
 }
 
