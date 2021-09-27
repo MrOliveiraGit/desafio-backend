@@ -3,8 +3,6 @@
 pré-requisitos: docker instalado
 
 
-
 como usar:
-
-utilize o comando : docker-compose up
-rota documentação swagger: /api-docs
+1. utilize o comando : docker-compose up
+2. rota documentação swagger: /api-docs
