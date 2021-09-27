@@ -8,7 +8,7 @@ import ReservasRouter from '../routes/reservaRouter'
 class App {
   public express: express.Application;
   public mongoose = moongoose
-  public dburi:string = 'mongodb://127.0.0.1:27017/local'
+  public dburi:string = 'mongodb://mongoContainer:27017/local'
   constructor () {
     this.express = express()
     this.middlewares()

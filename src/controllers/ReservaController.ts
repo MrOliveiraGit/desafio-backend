@@ -66,12 +66,12 @@ class ReservaController {
 
   public updateReserva (req: Request, res: Response) {
     const { id, dadosApartamento, dataCheckin, dataCheckOut, qtdHospedes, dadosHospedes } = req.body
-
+    console.log(req.body)
     Reserva.findByIdAndUpdate(id, { dadosApartamento, dataCheckin, dataCheckOut, qtdHospedes, dadosHospedes })
       .exec()
       .then(result => {
         return res.status(204).json({
-          message: result
+          reserva: result
         })
       }).catch(error => {
         return res.status(500).json({

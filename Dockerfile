@@ -8,4 +8,4 @@ COPY . .
 
 EXPOSE 8080
 RUN yarn build
-CMD ["yarn","pm"]
+CMD ["yarn","start"]
