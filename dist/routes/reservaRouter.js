@@ -19,10 +19,5 @@ ReservasRouter.post('/reserva/create', _ReservaController.default.createReserva)
 ReservasRouter.delete('/reserva/delete', _ReservaController.default.deleteReserva);
 ReservasRouter.post('/reserva/update', _ReservaController.default.updateReserva);
 ReservasRouter.post('/reserva/deleteAll', _ReservaController.default.deleteAll);
-ReservasRouter.get('/healthCheck', (req, res) => {
-  return res.json({
-    messge: 'Ok'
-  });
-});
 var _default = ReservasRouter;
 exports.default = _default;

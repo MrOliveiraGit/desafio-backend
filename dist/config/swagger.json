@@ -78,7 +78,7 @@
         "/reserva/create":{
             "post":{
                 "summary": "criando uma reserva",
-                "description": "para criar uma reserva não é nescessario passar os ids, somente os dados no formato certo",
+                "description": "para criar uma reserva não é nescessario passar os ids, somente os dados no formato certo. mas para criar uma reserva em um hotel já existente coloque o id do hotel. caso crie uma reserva em um hotel existente que tanto as datas de checkin e checkout já existem, houvera um erro de 'conflito de datas'.\n o Hotel é definido pelo id, reservas com id do hotel iguais são consideradas no mesmo hotel",
                 "tags": ["Reserva"],
                 "requestBody":{
                     "content":{
@@ -265,6 +265,43 @@
                     }
                 }
             }
+        },
+        "/reserva/deleteAll":{
+            "post":{
+                "summary": "Apagando todas as reservas",
+                "description": "esta roda irá apagar todos os dados do banco",
+                "tags": ["Reserva"],
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                 "properties":{
+                                    "deleteAll":{
+                                        "type":"bolean"
+                                    }
+                                 }
+                            }
+                        }
+                    }
+                },
+                "responses":{
+                    "200":{
+                        "content":{
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                     "properties":{
+                                         "message":{
+                                            "type":"string"
+                                         }
+                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
@@ -272,6 +309,9 @@
             "Reserva":{
                 "type": "object",
                 "properties":{
+                    "_id":{
+                        "type":"string"
+                    },
                     "dadosApartamento":{
                         "type": "object",
                         "properties":{
