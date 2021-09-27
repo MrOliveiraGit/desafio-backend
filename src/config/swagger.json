@@ -86,9 +86,9 @@
                             "schema":{
                                 "type":"object",
                                 "properties":{
-                                    "Reserva":{
-                                        "type": "object",
-                                        "properties":{
+                                    
+                                       
+                                        
                                             "dadosApartamento":{
                                                 "type": "object",
                                                 "properties":{
@@ -100,15 +100,15 @@
                                                 
                                             },
                                             "dataCheckin":{
-                                                "type":"Date",
+                                                "type":"string",
                                                 "require": "true"
                                             },
                                             "dataCheckOut":{
-                                                "type":"Date",
+                                                "type":"string",
                                                 "require": "true"
                                             },
                                             "qtdHospedes": { 
-                                                "type": "Number", 
+                                                "type": "number", 
                                                 "required": "true" 
                                             },
                                             "dadosHospedes":{
@@ -117,22 +117,22 @@
                                                     "nomeHospedes": {
                                                         "type": "array",
                                                         "items":{
-                                                            "type": ["String"],
+                                                            "type": ["string"],
                                                             "required": "true" 
                                                         }
                                                     },
                                                     "emailHospedes": {
                                                         "type": "array",
                                                         "items":{
-                                                            "type": ["String"],
+                                                            "type": ["string"],
                                                             "required": "true" 
                                                         }
                                                     }
                                                 }
                                                 
                                             }
-                                        }
-                                    }
+                                        
+                                    
                                 }
                                 
                             }
